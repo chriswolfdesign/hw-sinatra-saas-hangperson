@@ -59,6 +59,39 @@ class HangpersonGame
     return word_to_display
   end
 
+  # @return [Symbol] :win if the player has won, :lose if the player has lost
+  # or :play if the game is still going
+  def check_win_or_lose
+    if self.won?
+      return :win
+    end
+
+    if self.lost?
+      return :lose
+    end
+
+    # if the player has not won or lost, the game must still be going
+    return :play
+  end
+
+  # @return [boolean] true if the player has won, false otherwise
+  def won?
+    # if any letters in the word have not been guessed, the player has not won
+    @word.split('').each do |letter|
+      if not @guesses.include? letter
+        return false
+      end
+    end
+
+    # if ever letter in word has been guessed, the player has won
+    return true
+  end
+
+  # @return [boolean] true if the player has lost, false otherwise
+  def lost?
+    return @wrong_guesses.length >= 7
+  end
+
   # You can test it by running $ bundle exec irb -I. -r app.rb
   # And then in the irb: irb(main):001:0> HangpersonGame.get_random_word
   #  => "cooking"   <-- some random word
