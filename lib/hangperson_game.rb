@@ -22,8 +22,8 @@ class HangpersonGame
   # @return [boolean] True if the letter was in the word, false otherwise
   def guess(letter)
 
-    if not letter?(letter)
-      raise ArgumentError.new()
+    unless letter?(letter)
+      raise ArgumentError.new
     end
 
     # convert the letter to lowercase
@@ -40,7 +40,7 @@ class HangpersonGame
       @wrong_guesses += letter
     end
 
-    return true
+    true
   end
 
   # @return [string] @word where all letters that have not yet been guessed
@@ -71,14 +71,14 @@ class HangpersonGame
     end
 
     # if the player has not won or lost, the game must still be going
-    return :play
+    :play
   end
 
   # @return [boolean] true if the player has won, false otherwise
   def won?
     # if any letters in the word have not been guessed, the player has not won
     @word.split('').each do |letter|
-      if not @guesses.include? letter
+      unless @guesses.include? letter
         return false
       end
     end
@@ -89,7 +89,7 @@ class HangpersonGame
 
   # @return [boolean] true if the player has lost, false otherwise
   def lost?
-    return @wrong_guesses.length >= 7
+    @wrong_guesses.length >= 7
   end
 
   # You can test it by running $ bundle exec irb -I. -r app.rb
@@ -106,7 +106,7 @@ class HangpersonGame
 
 end
 
-# @return [boolean] true if the given letter is a character, false otherwise
+# @return true if the given letter is a character, false otherwise
 def letter?(letter)
-  return letter =~ /[A-Za-z]/
+  letter =~ /[A-Za-z]/
 end
