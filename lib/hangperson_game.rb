@@ -56,7 +56,7 @@ class HangpersonGame
       end
     end
 
-    return word_to_display
+    word_to_display
   end
 
   # @return [Symbol] :win if the player has won, :lose if the player has lost
@@ -84,7 +84,7 @@ class HangpersonGame
     end
 
     # if ever letter in word has been guessed, the player has won
-    return true
+    true
   end
 
   # @return [boolean] true if the player has lost, false otherwise
