@@ -43,6 +43,22 @@ class HangpersonGame
     return true
   end
 
+  # @return [string] @word where all letters that have not yet been guessed
+  # are replaced with dashes
+  def word_with_guesses
+    word_to_display = ''
+
+    @word.split('').each do |letter|
+      if @guesses.include? letter
+        word_to_display += letter
+      else
+        word_to_display += '-'
+      end
+    end
+
+    return word_to_display
+  end
+
   # You can test it by running $ bundle exec irb -I. -r app.rb
   # And then in the irb: irb(main):001:0> HangpersonGame.get_random_word
   #  => "cooking"   <-- some random word
